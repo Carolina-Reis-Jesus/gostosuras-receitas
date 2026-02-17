@@ -20,15 +20,14 @@ html, body{
 /* ================= HEADER ================= */
 
 header{
-    background: #003049ff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    background: #003049ff;
+    padding: 0 2rem;
     height: 4rem;
-    padding-left: clamp(1rem, 5vw, 5rem);
-    padding-right: clamp(1rem, 5vw, 5rem);
 }
+
 
 #logo{
     display: flex;
@@ -48,23 +47,38 @@ header{
     color: white;
 }
 
+.menu-toggle{
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+
 nav ul{
     display: flex;
     gap: 2rem;
-}
-
-a{
-    text-decoration: none;
-}
-
-li{
     list-style: none;
-    color: white;
+}
+
+nav ul li{
     font-family: Lora;
+    color: white;
     transition: .3s;
 }
 
-li:hover{
+nav{ 
+    margin-top: 0;
+}
+
+nav a{
+    text-decoration: none;
+    color: #fff;
+}
+
+nav ul li:hover{
     text-shadow: 0 0 20px rgb(255, 153, 0);
     transform: scale(1.1);
 }
@@ -74,68 +88,70 @@ li:hover{
 #parte_colorida{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: #f77f00ff;
     min-height: 800px;
     flex-wrap: wrap;
-    padding: 2rem clamp(1rem, 5vw, 5rem);
+    padding: 4rem 2rem;
 }
 
 #img_intro{
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 #mulher_cozinhando{
-    margin-top: 3rem;
-    width: 90%;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
 }
+
 
 #intro{
     flex: 1;
-    text-align: center;
-    margin-top: 5rem;
-}
-
-#intro2{
-    margin-top: 4rem;
-    max-width: 900px;
-    width: 100%;
+    text-align: left;
+    max-width: 600px;
 }
 
 #f1{
     font-family: Pacifico;
-    font-size: 60px;
-    margin-bottom: 1rem;
-    max-width: 700px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 #f2, #f3{
     font-family: Merienda;
+    font-size: 1.1rem;
 }
+
 
 /* ================= CARDS ================= */
-.cards {
+.cards{
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 1rem;
 }
 
-.container {
+
+.container{
     display: flex;
     align-items: center;
-    gap: 15px;
-
-    width: 240px;
-    padding: 15px 20px;
-
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-
-    transition: 0.3s;
+    justify-content: center;
+    width: 300px;
+    height: 80px;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    transition: .4s;
 }
 
+
 .container:hover {
-    transform: translateY(-4px);
+    transform: scale(1.05);
+    border: 1px solid #000;
+    cursor: pointer;
 }
 
 .container img {
@@ -167,19 +183,20 @@ li:hover{
 
 .cards-flip{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 5rem;
+    padding: 2rem;
 }
 
+
 .container-flip{
-    position: relative;
-    width: 350px;
-    max-width: 90%;
-    height: 400px;
-    border-radius: 20px;
+    width: 300px;
+    height: 350px;
+    position: relative; /* ADICIONE ISSO */
 }
+
+
 
 .flip{
     position: absolute;
@@ -238,123 +255,237 @@ li:hover{
 /* ================= TEXTO ANIMADO ================= */
 
 .texto-animado{
-    font-size: 40px;
-    font-family: Lora;
+    font-size: clamp(20px, 6vw, 40px);
+    font-family: lora;
     text-align: center;
-    margin: 5rem 0;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.texto-animado span{
+    position: relative;
+}
+
+.texto-animado span::before{
+    content: "";
+    color: rgba(247, 127, 0, 1);
+    animation: palavras 20s infinite;
+}
+
+.texto-animado span::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    border-left: 0.08em solid rgba(247, 127, 0, 1);
+    right: -10px;
+    animation: cursor .8s infinite, digita 20s steps(15) infinite;
+    width: calc(100% + 18px);
+    background-color: white;
+}
+
+@keyframes digita{
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%{
+        width: 0;
+    }
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85%{
+        width: calc(100% + 18px);
+    }
+}
+
+@keyframes cursor{
+    0%{
+        border-left: 2px solid white;
+    }
+}
+
+@keyframes palavras{
+    0%,20%{
+        content: "doces!";
+    }
+    21%,40%{
+        content: "salgadas!";
+    }
+    41%,60%{content: "fitness!";
+    }
+    61%,80%{
+        content:" veganas!";
+    }
+    81%,100%{
+        content: "para compartilhar e saborear!";
+    }
 }
 
 /* ================= FOOTER ================= */
 
 footer{
     margin-top: 4rem;
-}
-
-#entre-em-contato{
     background: #003049ff;
-    padding: 1rem;
-}
-
-#frase-footer{
-    font-family: Lora;
     color: white;
-    text-align: center;
+    border-top: 4px solid #f77f00ff;
 }
 
+/* linhas e ícone */
+#hrs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0 1rem 0;
+}
+
+#hrs hr{
+    flex: 1;
+    height: 1px;
+    border: none;
+    background: #ccc;
+    max-width: 400px;
+}
+
+#header_footer{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+#icon-footer{
+    width: 100px;
+    opacity: 0.8;
+}
+
+#contato ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+#contato ul li{
+    transition: transform .3s ease;
+}
+
+#contato ul li:hover{
+    transform: scale(1.2);
+}
+
+#contato ul li a{
+    color: white;
+    font-size: 20px;
+}
+
+
+/* parte inferior */
 #decoration{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 47, 73, 0.932);
+    padding: 2rem;
     flex-wrap: wrap;
-    padding: 2rem clamp(1rem, 5vw, 5rem);
+    gap: 1.5rem;
 }
 
-#logo-footer{
+/* logo esquerda */
+.logo-footer{
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
-#img-logo-footer{
-    width: 20px;
+.img-logo-footer{
+    width: 28px;
     transform: rotate(338deg);
 }
 
-.medida-footer{
-    width: 30px;
+#gostosuras{
+    font-family: Pacifico;
+    font-size: 22px;
+    color: white;
 }
 
+/* redes direita */
 #conteudo-footer{
     display: flex;
     gap: 20px;
 }
 
+.medida-footer{
+    width: 26px;
+    transition: transform 0.3s ease;
+}
+
+.medida-footer:hover{
+    transform: scale(1.2);
+}
+
+/* centro */
+.dev{
+    flex: 1;
+    text-align: center;
+}
+
 .dev p{
     font-family: Montserrat;
-    font-size: 20px;
-    color: white;
+    font-size: 15px;
+    margin: 0;
 }
 
 /* ================= RESPONSIVO ================= */
 
-@media (max-width: 1024px){
+@media (max-width: 768px){
 
+    /* HEADER */
     header{
-        padding: 0 2rem;
+        position: relative;
+        flex-direction: row;
+        height: 4rem;
+        padding: 0 1rem;
     }
 
+    .menu-toggle{
+        display: block;
+    }
+
+    nav{
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background: #003049ff;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    nav ul{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav.active{
+        display: flex;
+    }
+
+    /* HERO */
     #parte_colorida{
         flex-direction: column;
         text-align: center;
-        padding: 2rem;
+        padding: 3rem 1.5rem;
     }
 
-    #intro{
-        margin-top: 3rem;
+    /* CARDS */
+    .container{
+        width: 100%;
+        justify-content: center;
     }
 
-    #f1{
-        font-size: 45px;
+    /* FLIP */
+    .container-flip{
+        width: 100%;
+        max-width: 320px;
     }
 
-    .cards{
-        flex-direction: column;
-        align-items: center;
-    }
 
-    .cards-flip{
-        flex-direction: column;
-        align-items: center;
-    }
-
+    /* FOOTER */
     #decoration{
         flex-direction: column;
         text-align: center;
-        gap: 2rem;
-    }
-
-}
-
-@media (max-width: 768px){
-
-    #f1{
-        font-size: 38px;
-    }
-
-    .texto-animado{
-        font-size: 28px;
-    }
-
-    .container-flip{
-        height: 300px;
-    }
-
-    .img_medida{
-        width: 70px;
-    }
-
-    .medida-footer{
-        width: 25px;
     }
 }
